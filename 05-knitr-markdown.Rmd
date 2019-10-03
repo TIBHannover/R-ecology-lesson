@@ -31,7 +31,7 @@ explain which attachment was which result.
 Writing formal reports with Word or [LaTeX](https://www.latex-project.org/)
 can simplify this by incorporating both the analysis report and output graphs 
 into a single document. But tweaking formatting to make figures look correct
-and fix obnoxious page breaks can be tedious and lead to a lengthly "whack
+and fix obnoxious page breaks can be tedious and lead to a lengthy "whack
 a mole" game of fixing new mistakes resulting from a single formatting change.
 
 Creating a web page (as an html file) by using R Markdown makes things easier.
