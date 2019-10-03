@@ -155,6 +155,7 @@ functions to get a sense of the content/structure of the data. Let's try them ou
 * Content:
     * `head(surveys)` - shows the first 6 rows
     * `tail(surveys)` - shows the last 6 rows
+    * `unique(surveys$colum_name)` - shows distinct values within a column
 
 * Names:
     * `names(surveys)` - returns the column names (synonym of `colnames()` for `data.frame`
@@ -170,25 +171,6 @@ Note: most of these functions are "generic", they can be used on other types of
 objects besides `data.frame`.
 
 
-> ### Challenge
->
-> Based on the output of `str(surveys)`, can you answer the following questions?
->
-> * What is the class of the object `surveys`?
-> * How many rows and how many columns are in this object?
-> * How many species have been recorded during these surveys?
->
-> ```{r, answer=TRUE, results="markup"}
->
-> str(surveys)
->
-> ## * class: data frame
-> ## * how many rows: 34786,  how many columns: 13
-> ## * how many species: 48
->
-> ```
-
-
 ## Extracting vectors from data frames
 
 Our survey data frame has rows and columns (its 2 dimensions). If we want to
@@ -201,3 +183,25 @@ surveys$species_id
 RStudio conveniently supports this `$`-notation by autocompletion, which is the
 reason why column names should not contain spaces. If you have a dataset that
 does, use `dataset[["column name"]]`.
+
+
+> ### Challenge
+>
+> Based on the output of `str(surveys)`, can you answer the following questions?
+>
+> * What is the class of the object `surveys`?
+> * How many rows and how many columns are in this object?
+> * How many species have been recorded during these surveys?
+>
+> ```{r, answer=TRUE, results='hide'}
+>
+> str(surveys)
+>
+> ## * "Classes ... 'tbl' and 'data.frame'""
+> ## * "34786 obs" = rows
+> ## * "13 variables" = columns
+> 
+> unique(surveys$species_id)
+> 
+> ## * how many species: 48
+> ```

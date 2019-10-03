@@ -691,6 +691,7 @@ div.tocify {
 <ul>
 <li><code>head(surveys)</code> - shows the first 6 rows</li>
 <li><code>tail(surveys)</code> - shows the last 6 rows</li>
+<li><code>unique(surveys$colum_name)</code> - shows distinct values within a column</li>
 </ul></li>
 <li>Names:
 <ul>
@@ -704,6 +705,12 @@ div.tocify {
 </ul></li>
 </ul>
 <p>Note: most of these functions are “generic”, they can be used on other types of objects besides <code>data.frame</code>.</p>
+</div>
+<div id="extracting-vectors-from-data-frames" class="section level2">
+<h2>Extracting vectors from data frames</h2>
+<p>Our survey data frame has rows and columns (its 2 dimensions). If we want to extract some specific column we can do:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>surveys<span class="op">$</span>species_id</span></code></pre></div>
+<p>RStudio conveniently supports this <code>$</code>-notation by autocompletion, which is the reason why column names should not contain spaces. If you have a dataset that does, use <code>dataset[["column name"]]</code>.</p>
 <blockquote>
 <h3 id="challenge">Challenge</h3>
 <p>Based on the output of <code>str(surveys)</code>, can you answer the following questions?</p>
@@ -717,49 +724,18 @@ div.tocify {
 Answer
 </h3>
 <div style="background: #fff;">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">str</span>(surveys)</span></code></pre></div>
-<pre><code>#&gt; Classes &#39;spec_tbl_df&#39;, &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   34786 obs. of  13 variables:
-#&gt;  $ record_id      : num  1 72 224 266 349 363 435 506 588 661 ...
-#&gt;  $ month          : num  7 8 9 10 11 11 12 1 2 3 ...
-#&gt;  $ day            : num  16 19 13 16 12 12 10 8 18 11 ...
-#&gt;  $ year           : num  1977 1977 1977 1977 1977 ...
-#&gt;  $ plot_id        : num  2 2 2 2 2 2 2 2 2 2 ...
-#&gt;  $ species_id     : chr  &quot;NL&quot; &quot;NL&quot; &quot;NL&quot; &quot;NL&quot; ...
-#&gt;  $ sex            : chr  &quot;M&quot; &quot;M&quot; NA NA ...
-#&gt;  $ hindfoot_length: num  32 31 NA NA NA NA NA NA NA NA ...
-#&gt;  $ weight         : num  NA NA NA NA NA NA NA NA 218 NA ...
-#&gt;  $ genus          : chr  &quot;Neotoma&quot; &quot;Neotoma&quot; &quot;Neotoma&quot; &quot;Neotoma&quot; ...
-#&gt;  $ species        : chr  &quot;albigula&quot; &quot;albigula&quot; &quot;albigula&quot; &quot;albigula&quot; ...
-#&gt;  $ taxa           : chr  &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; ...
-#&gt;  $ plot_type      : chr  &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; ...
-#&gt;  - attr(*, &quot;spec&quot;)=
-#&gt;   .. cols(
-#&gt;   ..   record_id = col_double(),
-#&gt;   ..   month = col_double(),
-#&gt;   ..   day = col_double(),
-#&gt;   ..   year = col_double(),
-#&gt;   ..   plot_id = col_double(),
-#&gt;   ..   species_id = col_character(),
-#&gt;   ..   sex = col_character(),
-#&gt;   ..   hindfoot_length = col_double(),
-#&gt;   ..   weight = col_double(),
-#&gt;   ..   genus = col_character(),
-#&gt;   ..   species = col_character(),
-#&gt;   ..   taxa = col_character(),
-#&gt;   ..   plot_type = col_character()
-#&gt;   .. )</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## * class: data frame</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">## * how many rows: 34786,  how many columns: 13</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">## * how many species: 48</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">str</span>(surveys)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">## * &quot;Classes ... &#39;tbl&#39; and &#39;data.frame&#39;&quot;&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">## * &quot;34786 obs&quot; = rows</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">## * &quot;13 variables&quot; = columns</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="kw">unique</span>(surveys<span class="op">$</span>species_id)</span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">## * how many species: 48</span></span></code></pre></div>
 </div>
 </div>
 </blockquote>
-</div>
-<div id="extracting-vectors-from-data-frames" class="section level2">
-<h2>Extracting vectors from data frames</h2>
-<p>Our survey data frame has rows and columns (its 2 dimensions). If we want to extract some specific column we can do:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>surveys<span class="op">$</span>species_id</span></code></pre></div>
-<p>RStudio conveniently supports this <code>$</code>-notation by autocompletion, which is the reason why column names should not contain spaces. If you have a dataset that does, use <code>dataset[["column name"]]</code>.</p>
 </div>
 
 <hr/>
