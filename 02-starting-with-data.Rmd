@@ -4,7 +4,7 @@ author: "Data Carpentry contributors"
 minutes: 20
 ---
 
-```{r, include=FALSE, purl=FALSE}
+```{r, include=FALSE}
 source("setup.R")
 ```
 
@@ -24,10 +24,6 @@ source("setup.R")
 ------------
 
 ## Presentation of the Survey Data
-
-```{r, echo=FALSE, purl=TRUE}
-### Presentation of the survey data
-```
 
 We are studying the species repartition and weight of animals caught in plots in our study
 area. The dataset is stored as a comma separated value (CSV) file.
@@ -59,7 +55,7 @@ file on your local machine. You'll need to have a folder on your machine called 
 you'll download the file. So this command downloads a file from Figshare, names it 
 "portal_data_joined.csv," and adds it to a preexisting folder named "data_raw".
 
-```{r, eval=FALSE, purl=TRUE}
+```{r download}
 download.file(url="https://ndownloader.figshare.com/files/2292169",
               destfile = "data_raw/portal_data_joined.csv")
 ```
@@ -68,14 +64,14 @@ If we haven't already done so, we can type `install.packages("tidyverse")` strai
 
 Then, to load the package type:
 
-```{r, message = FALSE, warning = FALSE, purl = FALSE}
+```{r, message = FALSE, warning = FALSE}
 ## load the tidyverse packages
 library(tidyverse)
 ```
 
 You are now ready to load the data:
 
-```{r, results = 'hide', message = FALSE, purl = FALSE}
+```{r, results = 'hide', message = FALSE}
 surveys <- read_csv("data_raw/portal_data_joined.csv")
 ```
 
@@ -139,7 +135,7 @@ numeric, a character, and a logical vector.
 We can see this when inspecting the <b>str</b>ucture of a data frame
 with the function `str()`:
 
-```{r, purl=FALSE}
+```{r}
 str(surveys)
 ```
 
@@ -182,7 +178,7 @@ objects besides `data.frame`.
 > * How many rows and how many columns are in this object?
 > * How many species have been recorded during these surveys?
 >
-> ```{r, answer=TRUE, results="markup", purl=FALSE}
+> ```{r, answer=TRUE, results="markup"}
 >
 > str(surveys)
 >
@@ -193,29 +189,12 @@ objects besides `data.frame`.
 > ```
 
 
-```{r, echo=FALSE, purl=TRUE}
-
-## Challenge
-## Based on the output of `str(surveys)`, can you answer the following questions?
-## * What is the class of the object `surveys`?
-## * How many rows and how many columns are in this object?
-## * How many species have been recorded during these surveys?
-
-```
-
-
-
 ## Extracting vectors from data frames
-
-```{r, echo=FALSE, purl=TRUE}
-
-## Extracting vectors from data frames
-```
 
 Our survey data frame has rows and columns (its 2 dimensions). If we want to
 extract some specific column we can do:
 
-```{r, eval = FALSE, purl=FALSE}
+```{r, eval = FALSE}
 surveys$species_id
 ```
 

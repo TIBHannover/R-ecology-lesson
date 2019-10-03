@@ -5,7 +5,7 @@ minutes: 30
 require_mathjax: true
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, purl=FALSE}
+```{r setup, echo=FALSE, warning=FALSE}
 source("setup.R")
 ```
 
@@ -257,7 +257,7 @@ read_csv("data_raw/portal_data_joined.csv") %>%
 &#96;&#96;&#96;
 </pre>
 
-```{r, output-table, message=FALSE, warning=FALSE, echo=FALSE, purl=FALSE}
+```{r, output-table, message=FALSE, warning=FALSE, echo=FALSE}
 library(tidyverse)
 library(knitr)
 read_csv("data/surveys_complete.csv") %>%
@@ -293,7 +293,7 @@ This renders as:
 As the following analysis shows, there are only slight differences
 in the counts of male and female individuals in...:
 
-```{r output-ggplot, message=FALSE, warning=FALSE, echo=FALSE, purl=FALSE}
+```{r output-ggplot, message=FALSE, warning=FALSE, echo=FALSE}
 library(ggplot2)
 read_csv("data/surveys_complete.csv") %>%
   mutate(sex = if_else(sex == "F", "female", "male")) %>%

@@ -6,7 +6,7 @@ minutes: 15
 
 
 
-```{r, include=FALSE, purl=FALSE}
+```{r, include=FALSE}
 source("setup.R")
 ```
 
@@ -215,7 +215,7 @@ are only going to use one file and it will make things easier.
 
 Your working directory should now look like this:
 
-```{r, results='markup',fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, purl=FALSE, out.width='100%', fig.align='center'}
+```{r, results='markup',fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, out.width='100%', fig.align='center'}
 knitr::include_graphics("img/r-starting-how-it-should-look-like.png")
 ```
 
@@ -293,7 +293,7 @@ command and return you to the `>` prompt.
 The material we cover during this workshop will give you an initial taste of how you can use R to analyze data for your own research. However, you will need to learn more to do advanced operations such as cleaning your dataset, using statistical methods, or creating beautiful graphics. The best way to become proficient and efficient at R, as with any other tool, is to use it to address your actual research questions. As a beginner, it can feel daunting to have to write a script from scratch, and given that many people make their code available online, modifying existing code to suit your purpose might make it easier for you to get started.
 
 
-```{r kitten-img, results='markup', echo=FALSE, purl=FALSE, out.width='400px', fig.align='center'}
+```{r kitten-img, results='markup', echo=FALSE, out.width='400px', fig.align='center'}
 knitr::include_graphics("img/kitten-try-things.jpg")
 ```
 
@@ -310,13 +310,13 @@ One of the fastest ways to get help, is to use the RStudio help interface. This 
 
 If you need help with a specific function, let's say `barplot()`, you can type:
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE}
 ?barplot
 ```
 
 If you just need to remind yourself of the names of the arguments, you can use:
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE}
 args(lm)
 ```
 
@@ -327,7 +327,7 @@ If you are looking for a function to do a particular task, you can use the
 However, this only looks through the installed packages for help pages with a
 match to your search request
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE}
 ??kruskal
 ```
 
@@ -374,7 +374,7 @@ as it provides critical information about your platform, the versions of R and
 the packages that you are using, and other information that can be very helpful
 to understand your problem.
 
-```{r, results='show', purl=FALSE}
+```{r, results='show'}
 sessionInfo()
 ```
 
