@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Data Carpentry contributors" />
+
+
+<title>Starting with data</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon/favicon.ico">
+<link rel="icon" sizes="16x16 32x32 64x64" href="favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon-192.png">
+<link rel="icon" type="image/png" sizes="160x160" href="favicon/favicon-160.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+<link rel="apple-touch-icon" href="favicon/favicon-57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicon/favicon-114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicon/favicon-72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicon/favicon-144.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicon/favicon-60.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon/favicon-120.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicon/favicon-76.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon/favicon-152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180.png">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="favicon/favicon-144.png">
+<meta name="msapplication-config" content="favicon/browserconfig.xml">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+  $( function() {
+  $( ".accordion" ).accordion({
+      heightStyle: "content",
+      active: false,
+      collapsible: true
+    });
+  } );
+</script>
+
+<script>
+  <!-- search menu pop-up --->
+  $(function() {
+    function slideToggle() {
+      $("#search-box").toggle("slide", 500);
+  };
+  $("#search-icon").on("click", function() {
+  slideToggle();
+  });
+  });
+</script>
+
+
+
+<!-- Motomo analytics -->
+
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
+<!-- add  Algolia DocSearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="00-before-we-start.html">Before we start</a>
+        </li>
+        <li>
+          <a href="01-intro-to-r.html">Intro to R</a>
+        </li>
+        <li>
+          <a href="02-starting-with-data.html">Starting with data</a>
+        </li>
+        <li>
+          <a href="03-dplyr.html">Manipulating data</a>
+        </li>
+        <li>
+          <a href="04-visualization-ggplot2.html">Visualizing data</a>
+        </li>
+        <li>
+          <a href="05-knitr-markdown.html">Reproducible reports</a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="btn-group" style="margin-right: 10px;">
+            <a type="button" class="btn btn-sm btn-success navbar-btn" href="https://carpentries.wedid.it" onclick="_paq.push(['trackEvent', 'donate', 'click', 'top-button']);">Donate</a>
+            <a type="button" class="btn btn-sm btn-success navbar-btn"  data-toggle="tooltip" data-placement="bottom" title="If this lesson is useful to you, consider making a contribution to The Carpentries by clicking on the 'Donate' button. Thank you for your support!">
+              <span class="glyphicon glyphicon-question-sign"></span>
+              <span class="sr-only">Toggle Tooltip</span>
+            </a>
+          </div>
+        </li>
+	<li class="search">
+	  <input id="search-box" type="text"  placeholder="Search...">
+	  <input type="submit">
+	</li>
+	<li class="search">
+	  <span id ="search-icon"><i class="fa fa-search fa-lg"></i></span>
+	</li>
+        <li>
+	  <a href="https://github.com/datacarpentry/R-ecology-lesson">
+	    <span class="fa fa-github fa-lg"></span>
+	  </a>
+	</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Starting with data</h1>
+<h4 class="author">Data Carpentry contributors</h4>
+
+</div>
+
+
+<hr />
+<blockquote>
+<h3 id="learning-objectives">Learning Objectives</h3>
+<ul>
+<li>Load external data from a .csv file into a data frame.</li>
+<li>Describe what a data frame is.</li>
+<li>Summarize the contents of a data frame.</li>
+<li>Extract a vector from a data frame</li>
+<li>Describe what a factor is.</li>
+<li>Convert between strings and factors.</li>
+<li>Reorder and rename factors.</li>
+<li>Format dates.</li>
+</ul>
+</blockquote>
+<hr />
+<div id="presentation-of-the-survey-data" class="section level2">
+<h2>Presentation of the Survey Data</h2>
+<p>We are studying the species repartition and weight of animals caught in plots in our study area. The dataset is stored as a comma separated value (CSV) file. Each row holds information for a single animal, and the columns represent:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>record_id</td>
+<td>Unique id for the observation</td>
+</tr>
+<tr class="even">
+<td>month</td>
+<td>month of observation</td>
+</tr>
+<tr class="odd">
+<td>day</td>
+<td>day of observation</td>
+</tr>
+<tr class="even">
+<td>year</td>
+<td>year of observation</td>
+</tr>
+<tr class="odd">
+<td>plot_id</td>
+<td>ID of a particular plot</td>
+</tr>
+<tr class="even">
+<td>species_id</td>
+<td>2-letter code</td>
+</tr>
+<tr class="odd">
+<td>sex</td>
+<td>sex of animal (“M”, “F”)</td>
+</tr>
+<tr class="even">
+<td>hindfoot_length</td>
+<td>length of the hindfoot in mm</td>
+</tr>
+<tr class="odd">
+<td>weight</td>
+<td>weight of the animal in grams</td>
+</tr>
+<tr class="even">
+<td>genus</td>
+<td>genus of animal</td>
+</tr>
+<tr class="odd">
+<td>species</td>
+<td>species of animal</td>
+</tr>
+<tr class="even">
+<td>taxon</td>
+<td>e.g. Rodent, Reptile, Bird, Rabbit</td>
+</tr>
+<tr class="odd">
+<td>plot_type</td>
+<td>type of plot</td>
+</tr>
+</tbody>
+</table>
+<p>We are going to use the R function <code>download.file()</code> to download the CSV file that contains the survey data from Figshare, and we will use <code>read_csv()</code> to load into memory the content of the CSV file as an object of class <code>data.frame</code>. Inside the download.file command, the first entry is a character string with the source URL (“<a href="https://ndownloader.figshare.com/files/2292169" class="uri">https://ndownloader.figshare.com/files/2292169</a>”). This source URL downloads a CSV file from figshare. The text after the comma (“data_raw/portal_data_joined.csv”) is the destination of the file on your local machine. You’ll need to have a folder on your machine called “data_raw” where you’ll download the file. So this command downloads a file from Figshare, names it “portal_data_joined.csv,” and adds it to a preexisting folder named “data_raw”.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://ndownloader.figshare.com/files/2292169&quot;</span>,</span>
+<span id="cb1-2"><a href="#cb1-2"></a>              <span class="dt">destfile =</span> <span class="st">&quot;data_raw/portal_data_joined.csv&quot;</span>)</span></code></pre></div>
+<p>If we haven’t already done so, we can type <code>install.packages("tidyverse")</code> straight into the console. In fact, it’s better to write this in the console than in our script for any package, as there’s no need to re-install packages every time we run the script.</p>
+<p>Then, to load the package type:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## load the tidyverse packages</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>You are now ready to load the data:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>surveys &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_raw/portal_data_joined.csv&quot;</span>)</span></code></pre></div>
+<p>This statement doesn’t produce any output because, as you might recall, assignments don’t display anything. If we want to check that our data has been loaded, we can see the contents of the data frame by typing its name: <code>surveys</code>.</p>
+<p>In RStudio’s <code>Environment</code> pane, this <code>Data</code> object can now be inspected by clicking its name and the round <code>&gt;</code> button left of it. The latter provides an overview of all columns/variables grouped by data type/class: <code>character</code> and <code>numeric</code>.</p>
+<blockquote>
+<h3 id="note">Note</h3>
+<p><code>read_csv</code> assumes that fields are delineated by commas, however, in several countries, the comma is used as a decimal separator and the semicolon (<code>;</code>) is used as a field delineator. If you want to read in this type of files in R, you can use the <code>read_csv2</code> function. It behaves exactly like <code>read_csv</code> but uses different parameters for the decimal and the field separators. If you are working with another format, they can be both specified by the user. Check out the help for <code>read_csv()</code> by typing <code>?read_csv</code> to learn more. There is also the <code>read_delim()</code> for in tab separated data files.</p>
+<p>In addition to the above versions of the csv format, you should develop the habits of looking at and record some parameters of your csv files. For instance, the character encoding, control characters used for line ending, date format (if the date is not splitted into three variables), and the presence of unexepected <a href="https://en.wikipedia.org/wiki/Newline">newlines</a> are important characteristics of your data files. Those parameters will ease up the import step of your data in R.</p>
+</blockquote>
+<p>Using the columns, we’re going to learn some common analysis functions later:</p>
+<ul>
+<li><code>select()</code>: subset columns</li>
+<li><code>filter()</code>: subset rows on conditions</li>
+<li><code>mutate()</code>: create new columns by using information from other columns</li>
+<li><code>group_by()</code> and <code>summarize()</code>: create summary statistics on grouped data</li>
+<li><code>arrange()</code>: sort results</li>
+<li><code>count()</code>: count discrete values</li>
+</ul>
+<p>But first, some theory.</p>
+</div>
+<div id="what-are-data-frames-and-tibbles" class="section level2">
+<h2>What are data frames (and tibbles)?</h2>
+<p>Data frames are the <em>de facto</em> data structure for most tabular data, and what we use for statistics and plotting. Tibbles are the tidyverse’s modern variant. Essentially, they are a bit nicer to work with.</p>
+<p>Both can be created by hand, but most commonly they are generated by the functions <code>read...</code> functions; in other words, when importing spreadsheets from your hard drive (or the web).</p>
+<p>A data frame / tibble is the representation of data in the format of a table where the columns are vectors that all have the same length. Because columns are vectors, each column must contain a single type of data (e.g., characters, integers, factors). For example, here is a figure depicting a data frame comprising a numeric, a character, and a logical vector.</p>
+<p><img src="img/data-frame.svg" /></p>
+<p>We can see this when inspecting the <b>str</b>ucture of a data frame with the function <code>str()</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">str</span>(surveys)</span></code></pre></div>
+</div>
+<div id="inspecting-data.frame-objects" class="section level2">
+<h2>Inspecting <code>data.frame</code> Objects</h2>
+<p>We already saw how calling <code>surveys</code> itself or <code>str(surveys)</code> provided us with content and the structure of the data frame / tibble. Here is a non-exhaustive list of functions to get a sense of the content/structure of the data. Let’s try them out!</p>
+<ul>
+<li>Size:
+<ul>
+<li><code>dim(surveys)</code> - returns a vector with the number of rows in the first element, and the number of columns as the second element (the <strong>dim</strong>ensions of the object)</li>
+<li><code>nrow(surveys)</code> - returns the number of rows</li>
+<li><code>ncol(surveys)</code> - returns the number of columns</li>
+</ul></li>
+<li>Content:
+<ul>
+<li><code>head(surveys)</code> - shows the first 6 rows</li>
+<li><code>tail(surveys)</code> - shows the last 6 rows</li>
+</ul></li>
+<li>Names:
+<ul>
+<li><code>names(surveys)</code> - returns the column names (synonym of <code>colnames()</code> for <code>data.frame</code> objects)</li>
+<li><code>rownames(surveys)</code> - returns the row names</li>
+</ul></li>
+<li>Summary:
+<ul>
+<li><code>str(surveys)</code> - structure of the object and information about the class, length and content of each column</li>
+<li><code>summary(surveys)</code> - summary statistics for each column</li>
+</ul></li>
+</ul>
+<p>Note: most of these functions are “generic”, they can be used on other types of objects besides <code>data.frame</code>.</p>
+<blockquote>
+<h3 id="challenge">Challenge</h3>
+<p>Based on the output of <code>str(surveys)</code>, can you answer the following questions?</p>
+<ul>
+<li>What is the class of the object <code>surveys</code>?</li>
+<li>How many rows and how many columns are in this object?</li>
+<li>How many species have been recorded during these surveys?</li>
+</ul>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">str</span>(surveys)</span></code></pre></div>
+<pre><code>#&gt; Classes &#39;spec_tbl_df&#39;, &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   34786 obs. of  13 variables:
+#&gt;  $ record_id      : num  1 72 224 266 349 363 435 506 588 661 ...
+#&gt;  $ month          : num  7 8 9 10 11 11 12 1 2 3 ...
+#&gt;  $ day            : num  16 19 13 16 12 12 10 8 18 11 ...
+#&gt;  $ year           : num  1977 1977 1977 1977 1977 ...
+#&gt;  $ plot_id        : num  2 2 2 2 2 2 2 2 2 2 ...
+#&gt;  $ species_id     : chr  &quot;NL&quot; &quot;NL&quot; &quot;NL&quot; &quot;NL&quot; ...
+#&gt;  $ sex            : chr  &quot;M&quot; &quot;M&quot; NA NA ...
+#&gt;  $ hindfoot_length: num  32 31 NA NA NA NA NA NA NA NA ...
+#&gt;  $ weight         : num  NA NA NA NA NA NA NA NA 218 NA ...
+#&gt;  $ genus          : chr  &quot;Neotoma&quot; &quot;Neotoma&quot; &quot;Neotoma&quot; &quot;Neotoma&quot; ...
+#&gt;  $ species        : chr  &quot;albigula&quot; &quot;albigula&quot; &quot;albigula&quot; &quot;albigula&quot; ...
+#&gt;  $ taxa           : chr  &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; ...
+#&gt;  $ plot_type      : chr  &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; ...
+#&gt;  - attr(*, &quot;spec&quot;)=
+#&gt;   .. cols(
+#&gt;   ..   record_id = col_double(),
+#&gt;   ..   month = col_double(),
+#&gt;   ..   day = col_double(),
+#&gt;   ..   year = col_double(),
+#&gt;   ..   plot_id = col_double(),
+#&gt;   ..   species_id = col_character(),
+#&gt;   ..   sex = col_character(),
+#&gt;   ..   hindfoot_length = col_double(),
+#&gt;   ..   weight = col_double(),
+#&gt;   ..   genus = col_character(),
+#&gt;   ..   species = col_character(),
+#&gt;   ..   taxa = col_character(),
+#&gt;   ..   plot_type = col_character()
+#&gt;   .. )</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## * class: data frame</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">## * how many rows: 34786,  how many columns: 13</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">## * how many species: 48</span></span></code></pre></div>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="extracting-vectors-from-data-frames" class="section level2">
+<h2>Extracting vectors from data frames</h2>
+<p>Our survey data frame has rows and columns (its 2 dimensions). If we want to extract some specific column we can do:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>surveys<span class="op">$</span>species_id</span></code></pre></div>
+<p>RStudio conveniently supports this <code>$</code>-notation by autocompletion, which is the reason why column names should not contain spaces. If you have a dataset that does, use <code>dataset[["column name"]]</code>.</p>
+</div>
+
+<hr/>
+<div class="row">
+  <div class="col-md-7 text-left">
+    <p class="text-muted">
+      <a href="https://datacarpentry.org/">Data Carpentry</a>,  2014-2019.
+    </p>
+    <p class="text-muted">
+      <a href="LICENSE.html">License</a>.
+      <a href="CONTRIBUTING.html">Contributing</a>.
+    </p>
+    <p class="text-muted">
+      Questions?  Feedback?
+      Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file
+        an issue on GitHub</a>. <br/>
+      On Twitter: <a href="https://twitter.com/datacarpentry">@datacarpentry</a>
+    </p>
+  </div>
+  <div class="col-md-5 text-right">
+    <p class="text-muted">
+      If this lesson is useful to you, consider <a href="https://carpentries.org/newsletter/"><bold>subscribing to our newsletter</bold></a> or
+      <a href="https://carpentries.wedid.it"  onclick="_paq.push(['trackEvent', 'donate', 'click', 'bottom-button']);">making a donation</a> to support the work of
+      <span class="text-nowrap"><a href="https://carpentries.org">The
+      Carpentries</a></span>.
+    </p>
+  </div>
+</div>
+
+
+<!--  Algolia DocSearch -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+ apiKey: '4c64cef535ab2b7c8d1b73ed13f283e1',
+ indexName: 'datacarpentry',
+ inputSelector: '#search-box',
+ debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

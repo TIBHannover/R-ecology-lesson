@@ -5,6 +5,10 @@ minutes: 30
 require_mathjax: true
 ---
 
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE}
+source("setup.R")
+```
+
 ------------
 
 > ### Learning Objectives

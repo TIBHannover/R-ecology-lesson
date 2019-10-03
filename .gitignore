@@ -20,8 +20,9 @@ data*/
 .secret/
 _site/
 site_libs/
-img/
-0*.html
+img/R-ecology-*
+/0*.html
+/0*.knit.md
 
 # output from linkchecker
 link_res.csv

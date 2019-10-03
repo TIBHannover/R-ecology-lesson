@@ -1,6 +1,5 @@
 output_dir: "_site"
-exclude: ["DESCRIPTION", "Makefile"]
-include: ["code-handout.R"]
+exclude: ["DESCRIPTION", "Makefile", "data", "data_raw"]
 output:
   html_document:
     highlight: pygments
