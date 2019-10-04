@@ -219,31 +219,28 @@ symbol negates the result, so we're asking for every row where weight *is not* a
 >     select(species_id, hindfoot_cm)
 > ```
  
-Mutate is also useful to change character strings. E.g. spelling `F` and `M` out:
+Mutate is also useful to change character strings. E.g. spelling `F` and `M` 
+in order to make the data (and the diagrams we draw later ) more self-explanatory:
 
 ```{r mutate-abbr}
-surveys %>%
-  mutate(sex = if_else(is.na(sex), true = "undetermined", 
-                       false = if_else(sex == "F", "female", "male")
-                       )
-         )
+suverys <- mutate(surveys,
+  sex = if_else(
+    condition = is.na(sex),
+    true = "undetermined",
+    false = if_else(sex == "F", "female", "male")
+  )
+)
 ```
 
 Note that this time, we are overwriting the data, because we give `mutate` the
-same target colum as `if_else`'s source column.
+same target colum as `if_else`'s source column. The raw CSV file must not be 
+changed, but cleaning the data within R's environment and with explicitely coded
+steps is fine.
 
 `if_else` is similar to the "conditional subsetting" we learned earlier:
 Its first argument is a condition (here using `==`) that returns a logical result
 (`TRUE` or `FALSE`), that determines which of the following two arguments (`true = ...` or `false = ...`) is used as the function's output. Because we need to check
 3 different cases, we need to next 2 `if_else` calls.
-
-Changing the raw data in this way can be justified because:
-
-1. it's explicitly coded
-2. the purpose is to make the data more self-explanatory.
-
-The latter will be useful later when we draw diagrams from this data.
-
 
 
 ### Split-apply-combine data analysis and the `summarize()` function
