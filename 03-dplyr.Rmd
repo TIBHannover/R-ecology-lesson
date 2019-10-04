@@ -549,7 +549,7 @@ gather(surveys_spread, key = "genus", value = "mean_weight", Baiomys:Spermophilu
 
 > ### Challenge {.challenge}
 >
-> 1. Spread the `surveys` data frame with `year` as columns, `plot_id` 
+> 1. Spread the `surveys` data frame with `year` as columns, `plot_type` 
 >   as rows, and the
 >   number of genera per plot as the values. You will need to summarize before
 >   reshaping, and use the function `n_distinct()` to get the number of unique
@@ -558,7 +558,7 @@ gather(surveys_spread, key = "genus", value = "mean_weight", Baiomys:Spermophilu
 > 
 > ```{r, answer=TRUE}
 > surveys_spread_genera <- surveys %>%
->   group_by(plot_id, year) %>%
+>   group_by(plot_type, year) %>%
 >   summarize(n_genera = n_distinct(genus)) %>%
 >   spread(year, n_genera)
 > 
@@ -566,10 +566,10 @@ gather(surveys_spread, key = "genus", value = "mean_weight", Baiomys:Spermophilu
 > ```
 >
 > 2. Now take that data frame and `gather()` it again, so each row is a unique
->    `plot_id` by `year` combination.
+>    `plot_type` by `year` combination.
 >
 > ```{r, answer=TRUE}
-> gather(surveys_spread_genera, "year", "n_genera", -plot_id)
+> gather(surveys_spread_genera, "year", "n_genera", -plot_type)
 > ```
 >
 > 3. The `surveys` data set has
