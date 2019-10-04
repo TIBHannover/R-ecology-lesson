@@ -183,7 +183,7 @@ library(tidyverse)
 library(knitr)
 read_csv("data_raw/portal_data_joined.csv") %>%
   filter(!is.na(weight)) %>%
-  group_by(plot_id, genus) %>%
+  group_by(plot_type, genus) %>%
   summarize(mean_weight = round(mean(weight), 1)) %>%
   spread(key = genus, value = mean_weight) %>% 
   kable()
@@ -195,7 +195,7 @@ library(tidyverse)
 library(knitr)
 read_csv("data/surveys_complete.csv") %>%
   filter(!is.na(weight)) %>%
-  group_by(plot_id, genus) %>%
+  group_by(plot_type, genus) %>%
   summarize(mean_weight = round(mean(weight), 1)) %>%
   spread(key = genus, value = mean_weight) %>% 
   kable()
