@@ -648,9 +648,11 @@ species_counts <- surveys_complete %>%
 surveys_complete <- filter(surveys_complete, species_id %in% species_counts$species_id)
 ```
 
-To make sure that everyone has the same data set, check that `surveys_complete`
-has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)` columns by
-typing `dim(surveys_complete)`.
+To make sure that everyone has this many rows/observations and columns/variables:
+
+```{r complete-dimensions}
+dim(surveys_complete)
+```
 
 Now that our data set is ready, we can save it as a CSV file in our `data`
 folder.
