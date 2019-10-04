@@ -16,10 +16,6 @@ source("setup.R")
 > * Describe what a data frame is.
 > * Summarize the contents of a data frame.
 > * Extract a vector from a data frame
-> * Describe what a factor is.
-> * Convert between strings and factors.
-> * Reorder and rename factors.
-> * Format dates.
 
 ------------
 
