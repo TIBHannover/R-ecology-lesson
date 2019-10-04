@@ -240,7 +240,7 @@ steps is fine.
 `if_else` is similar to the "conditional subsetting" we learned earlier:
 Its first argument is a condition (here using `==`) that returns a logical result
 (`TRUE` or `FALSE`), that determines which of the following two arguments (`true = ...` or `false = ...`) is used as the function's output. Because we need to check
-3 different cases, we need to next 2 `if_else` calls.
+3 different cases, we need 2 `if_else` calls.
 
 
 ### Split-apply-combine data analysis and the `summarize()` function
