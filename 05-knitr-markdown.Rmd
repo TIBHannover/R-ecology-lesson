@@ -61,9 +61,10 @@ be executed, and graphs or other results inserted into the final document.
 This sort of idea has been called "literate programming".
 
 `knitr` allows you to mix basically any sort of text with code from different programming languages, but we recommend that you use `R Markdown`, which mixes Markdown
-with R. [Markdown](https://www.markdownguide.org/) is a light-weight mark-up language for creating web
-pages.
-
+with R. [Markdown](https://www.markdownguide.org/) is a light-weight mark-up language
+and a system for writing web pages and other documents by marking up the text 
+with just a few symbols, rather than code. The marked-up
+text gets _compiled_ to HTML, LaTeX, etc., replacing the marks with the proper code.
 
 ## Creating an R Markdown file
 
@@ -105,77 +106,9 @@ summary(cars)
 These are chunks of R code that will be executed by `knitr` and replaced
 by their results. More on this later.
 
-Also note the web address that's put between angle brackets (`< >`) as
-well as the double-asterisks in `**Knit**`. This is
-[Markdown](https://daringfireball.net/projects/markdown/syntax).
-
-## Markdown
-
-Markdown is a system for writing web pages by marking up the text much
-as you would in an email rather than writing html code. The marked-up
-text gets _converted_ to html, replacing the marks with the proper
-html code.
-
-For now, let's delete all of the stuff that's there and write a bit of
-markdown.
-
-You make things **bold** using two asterisks, like this: `**bold**`,
-and you make things _italics_ by using underscores, like this:
-`_italics_`.
-
-You can make a bulleted list by writing a list with hyphens or
-asterisks, like this:
-
-```
-* bold with double-asterisks
-* italics with underscores
-* code-type font with backticks
-```
-
-or like this:
-
-```
-- bold with double-asterisks
-- italics with underscores
-- code-type font with backticks
-```
-
-Each will appear as:
-
-- bold with double-asterisks
-- italics with underscores
-- code-type font with backticks
-
-You can use whatever method you prefer, but *be consistent*. This maintains the
-readability of your code.
-
-You can make a numbered list by just using numbers. You can even use the
-same number over and over if you want:
-
-```
-1. bold with double-asterisks
-1. italics with underscores
-1. code-type font with backticks
-```
-
-This will appear as:
-
-1. bold with double-asterisks
-1. italics with underscores
-1. code-type font with backticks
-
-You can make section headers of different sizes by initiating a line
-with some number of `#` symbols:
-
-```
-# Title
-## Main section
-### Sub-section
-#### Sub-sub section
-```
-
-You _compile_ the R Markdown document to an html webpage by clicking
-the "Knit" button in the upper-left.
+For now, let's try [this interactive tutorial](https://www.markdowntutorial.com/).
+Afterwards, use the syntax you learned there to recreate the `cars` help page.
+Compile it by clicking the `Knit` button in the upper-left.
 
 
 ## A bit more Markdown
@@ -237,10 +170,10 @@ and replaced by both the input and the output; if figures are
 produced, links to those figures are included.
 
 The Markdown and figure documents are then processed by the tool
-[`pandoc`](https://pandoc.org/), which converts the Markdown file into an
-html file, with the figures embedded.
+[`pandoc`](https://pandoc.org/), which compiles the Markdown file into an
+another document format, with the figures, tables, etc. embedded.
 
-In the previous lesson, we used `spread()` to transform `surveys` to find the
+In the previous lessons, we used `spread()` to transform `surveys` to find the
 mean weight of each genus in each plot over the entire survey period. The resulting
 table can be output into our document with `knitr`'s `kable()` function:
 
@@ -365,7 +298,7 @@ chunk (which is the same as `echo=FALSE` and `results="hide"`).
 
 ## Other output options
 
-You can also convert R Markdown to a PDF or a Word document. Click the
+You can also compile R Markdown to a PDF or a Word document. Click the
 little triangle next to the "Knit" button to get a drop-down
 menu. Or you could put `pdf_document` or `word_document` in the initial header
 of the file.
