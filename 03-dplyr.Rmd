@@ -389,7 +389,7 @@ the *albigula* species that are not specified for its sex (i.e. `NA`).
 > 1. Find out where the `n` is coming from, by reading the help pages of the above functions.
 >
 > ```{r, answer=TRUE}
-> args(count) # or ?count
+> # ?count or the auto-complete pop-up
 > # show that "n" is the default name of the column that is added by that function
 > ```
 >

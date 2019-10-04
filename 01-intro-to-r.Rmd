@@ -185,13 +185,8 @@ round(3.14159)
 Here, we've called `round()` with just one argument, `3.14159`, and it has
 returned the value `3`.  That's because the default is to round to the nearest
 whole number. If we want more digits we can see how to do that by getting
-information about the `round` function.  We can use `args(round)` to find what 
-arguments it takes, or look at the
-help for this function using `?round`.
-
-```{r, results = 'show'}
-args(round)
-```
+information about the `round` function.  We can use `?round` to find what 
+arguments it takes, or wait for the auto-completion pop-up.
 
 ```{r, eval = FALSE}
 ?round

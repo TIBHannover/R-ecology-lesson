@@ -314,11 +314,9 @@ If you need help with a specific function, let's say `barplot()`, you can type:
 ?barplot
 ```
 
-If you just need to remind yourself of the names of the arguments, you can use:
-
-```{r, eval=FALSE}
-args(lm)
-```
+To quickly remind yourself of argument names and default values, rely on RStudio
+and configure its auto-completion under Tools -> Global Options ->
+Code -> Completion.
 
 ### I want to use a function that does X, there must be a function for it but I don't know which one...
 
