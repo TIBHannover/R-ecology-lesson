@@ -1,3 +1,3 @@
 # CITATION
 
-See [DataCarpentry.org/R-ecology-lesson](https://datacarpentry.org/R-ecology-lesson/CITATION).
+See [DataCarpentry.org](https://datacarpentry.org/R-ecology-lesson/CITATION).
