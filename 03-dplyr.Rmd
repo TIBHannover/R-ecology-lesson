@@ -171,21 +171,19 @@ Note that the final data frame is the top-left-most part of this expression.
 
 Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions, or to find the ratio of values in two
-columns. For this we'll use `mutate()`.
-
-To create a new column of weight in kg:
+columns. For this we'll use `mutate()` (without the pipe for single operations):
 
 ```{r}
-surveys %>%
-  mutate(weight_kg = weight / 1000)
+mutate(surveys, weight_kg = weight / 1000)
 ```
 
 You can also create a second new column based on the first new column within the same call of `mutate()`:
 
 ```{r}
-surveys %>%
-  mutate(weight_kg = weight / 1000,
-         weight_lb = weight_kg * 2.2)
+mutate(surveys,
+  weight_kg = weight / 1000,
+  weight_lb = weight_kg * 2.2
+)
 ```
 
 The first few rows of the output are full of `NA`s, so if we wanted to remove
@@ -345,8 +343,7 @@ for each value or combination of values. For this task, **`dplyr`** provides
 each sex, we would do:
 
 ```{r}
-surveys %>%
-    count(sex) 
+count(surveys, sex) 
 ```
 
 The `count()` function is shorthand for something we've already seen: grouping by a variable, and summarizing it by counting the number of observations in that group. In other words, the above is equivalent to:  
@@ -360,8 +357,7 @@ surveys %>%
 For convenience, `count()` provides the `sort` argument:  
 
 ```{r}
-surveys %>%
-    count(sex, sort = TRUE) 
+count(surveys, sex, sort = TRUE) 
 ```
 
 Previous example shows the use of `count()` to count the number of rows/observations 
@@ -370,8 +366,7 @@ If we wanted to count *combination of variables*, such as `sex` and `species`,
 we would specify the first and the second variable as the arguments of `count()`:
 
 ```{r }
-surveys %>%
-  count(sex, species) 
+count(surveys, sex, species) 
 ```
 
 With the above code, we can proceed with `arrange()` to sort the table 
@@ -401,8 +396,7 @@ the *albigula* species that are not specified for its sex (i.e. `NA`).
 > 2. How many animals were caught in each `plot_type` surveyed?
 >
 > ```{r, answer=TRUE}
-> surveys %>%
->     count(plot_type) 
+> count(surveys, plot_type) 
 > ```
 >
 > 3. Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
@@ -498,10 +492,7 @@ Using `spread()` to key on `genus` with values from `mean_weight` this becomes
 24 observations of 11 variables, one row for each plot.
 
 ```{r}
-surveys_spread <- surveys_gw %>%
-  spread(key = genus, value = mean_weight)
-
-head(surveys_spread)
+(surveys_spread <- spread(surveys_gw, key = genus, value = mean_weight))
 ```
 
 ![](img/spread_data_R.png)
@@ -510,8 +501,7 @@ We could now plot comparisons between the weight of genera in different plots,
 although we may wish to fill in the missing values first.
 
 ```{r}
-surveys_gw %>%
-  spread(genus, mean_weight, fill = 0)
+spread(surveys_gw, genus, mean_weight, fill = 0)
 ```
 
 #### Gathering
@@ -537,8 +527,7 @@ To recreate `surveys_gw` from `surveys_spread` we would create a key called
 the key variable. Here we drop `plot_id` column with a minus sign.
 
 ```{r}
-surveys_gather <- surveys_spread %>%
-  gather(key = "genus", value = "mean_weight", -plot_id)
+surveys_gather <- gather(surveys_spread, key = "genus", value = "mean_weight", -plot_id)
 
 str(surveys_gather)
 ```
@@ -555,8 +544,7 @@ specify what to gather than what to leave alone. And if the columns are directly
 adjacent, we don't even need to list them all out - just use the `:` operator!
 
 ```{r}
-surveys_spread %>%
-  gather(key = "genus", value = "mean_weight", Baiomys:Spermophilus)
+gather(surveys_spread, key = "genus", value = "mean_weight", Baiomys:Spermophilus)
 ```
 
 > ### Challenge {.challenge}
@@ -581,8 +569,7 @@ surveys_spread %>%
 >    `plot_id` by `year` combination.
 >
 > ```{r, answer=TRUE}
-> surveys_spread_genera %>%
->   gather("year", "n_genera", -plot_id)
+> gather(surveys_spread_genera, "year", "n_genera", -plot_id)
 > ```
 >
 > 3. The `surveys` data set has
@@ -595,8 +582,7 @@ surveys_spread %>%
 >    `weight`. *Hint*: You'll need to specify which columns are being gathered.
 >
 > ```{r, answer=TRUE}
-> surveys_long <- surveys %>%
->   gather("measurement", "value", hindfoot_length, weight)
+> surveys_long <- gather(surveys, "measurement", "value", hindfoot_length, weight)
 > ```
 >
 > 4. With this new data set, calculate the average of each
@@ -637,10 +623,12 @@ Let's start by removing observations of animals for which `weight` and `hindfoot
 
 
 ```{r}
-surveys_complete <- surveys %>%
-  filter(!is.na(weight),           # remove missing weight
-         !is.na(hindfoot_length),  # remove missing hindfoot_length
-         !is.na(sex))                # remove missing sex
+surveys_complete <- filter(surveys,
+  # remove rows with missing values for these columns
+  !is.na(weight),
+  !is.na(hindfoot_length),
+  !is.na(sex)
+)
 ```
 
 Because we are interested in plotting how species abundances have changed
@@ -657,8 +645,7 @@ species_counts <- surveys_complete %>%
     filter(n >= 50)
 
 ## Only keep the most common species
-surveys_complete <- surveys_complete %>%
-  filter(species_id %in% species_counts$species_id)
+surveys_complete <- filter(surveys_complete, species_id %in% species_counts$species_id)
 ```
 
 To make sure that everyone has the same data set, check that `surveys_complete`
