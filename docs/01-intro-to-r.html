@@ -542,7 +542,7 @@ div.tocify {
 	  <span id ="search-icon"><i class="fa fa-search fa-lg"></i></span>
 	</li>
         <li>
-	  <a href="https://github.com/datacarpentry/R-ecology-lesson">
+	  <a href="https://github.com/tibhannover/R-ecology-lesson">
 	    <span class="fa fa-github fa-lg"></span>
 	  </a>
 	</li>
@@ -621,23 +621,20 @@ div.tocify {
 <div id="functions-and-their-arguments" class="section level3">
 <h3>Functions and their arguments</h3>
 <p>Functions are “canned scripts” that automate more complicated sets of commands including operations assignments, etc. Many functions are predefined, or can be made available by importing R <em>packages</em> (more on that later). A function usually takes one or more inputs called <em>arguments</em>. Functions often (but not always) return a <em>value</em>. A typical example would be the function <code>sqrt()</code>. The input (the argument) must be a number, and the return value (in fact, the output) is the square root of that number. Executing a function (‘running it’) is called <em>calling</em> the function. An example of a function call is:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>b &lt;-<span class="st"> </span><span class="kw">sqrt</span>(a)</span></code></pre></div>
-<p>Here, the value of <code>a</code> is given to the <code>sqrt()</code> function, the <code>sqrt()</code> function calculates the square root, and returns the value which is then assigned to the object <code>b</code>. This function is very simple, because it takes just one argument.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>ten &lt;-<span class="st"> </span><span class="kw">sqrt</span>(weight_kg)</span></code></pre></div>
+<p>Here, the value of <code>ten</code> is given to the <code>sqrt()</code> function, the <code>sqrt()</code> function calculates the square root, and returns the value which is then assigned to the object <code>weight_kg</code>. This function is very simple, because it takes just one argument.</p>
 <p>The return ‘value’ of a function need not be numerical (like that of <code>sqrt()</code>), and it also does not need to be a single item: it can be a set of things, or even a dataset. We’ll see that when we read data files into R.</p>
 <p>Arguments can be anything, not only numbers or filenames, but also other objects. Exactly what each argument means differs per function, and must be looked up in the documentation (see below). Some functions take arguments which may either be specified by the user, or, if left out, take on a <em>default</em> value: these are called <em>options</em>. Options are typically used to alter the way the function operates, such as whether it ignores ‘bad values’, or what symbol to use in a plot. However, if you want something specific, you can specify a value of your choice which will be used instead of the default.</p>
 <p>Let’s try a function that can take multiple arguments: <code>round()</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">round</span>(<span class="fl">3.14159</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 3</code></pre>
-<p>Here, we’ve called <code>round()</code> with just one argument, <code>3.14159</code>, and it has returned the value <code>3</code>. That’s because the default is to round to the nearest whole number. If we want more digits we can see how to do that by getting information about the <code>round</code> function. We can use <code>args(round)</code> to find what arguments it takes, or look at the help for this function using <code>?round</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">args</span>(round)</span></code></pre></div>
-<pre><code>#&gt; function (x, digits = 0) 
-#&gt; NULL</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>?round</span></code></pre></div>
+<p>Here, we’ve called <code>round()</code> with just one argument, <code>3.14159</code>, and it has returned the value <code>3</code>. That’s because the default is to round to the nearest whole number. If we want more digits we can see how to do that by getting information about the <code>round</code> function. We can use <code>?round</code> to find what arguments it takes, or wait for the auto-completion pop-up.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>?round</span></code></pre></div>
 <p>We see that if we want a different number of digits, we can type <code>digits = 2</code> or however many we want.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 3.14</code></pre>
 <p>If you provide the arguments in the exact same order as they are defined you don’t have to name them:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 3.14</code></pre>
 <p>It’s good practice to put the non-optional arguments (like the number you’re rounding) first in your function call, and to then specify the names of all optional arguments. If you don’t, someone reading your code might have to look up the definition of a function with unfamiliar arguments to understand what you’re doing.</p>
 </div>
@@ -645,23 +642,23 @@ div.tocify {
 <div id="vectors-and-data-types" class="section level2">
 <h2>Vectors and data types</h2>
 <p>A vector is the most common and basic data type in R, and is pretty much the workhorse of R. A vector is composed by a series of values, which can be either numbers or characters. We can assign a series of values to a vector using the <code>c()</code> function. For example we can create a vector of animal weights and assign it to a new object <code>weight_g</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>(weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">82</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>(weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">82</span>))</span></code></pre></div>
 <p>A vector can also contain characters:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>(animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>(animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>))</span></code></pre></div>
 <p>The quotes around “mouse”, “rat”, etc. are essential here. Without the quotes R will assume objects have been created called <code>mouse</code>, <code>rat</code> and <code>dog</code>. As these objects don’t exist in R’s memory, there will be an error message.</p>
 <p>There are many functions that allow you to inspect the content of a vector. <code>length()</code> tells you how many elements are in a particular vector:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">length</span>(weight_g)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">length</span>(animals)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">length</span>(weight_g)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">length</span>(animals)</span></code></pre></div>
 <p>An important feature of a vector, is that all of the elements are the same type of data. The function <code>class()</code> indicates the class (the type of element) of an object:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">class</span>(weight_g)</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">class</span>(animals)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">class</span>(weight_g)</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="kw">class</span>(animals)</span></code></pre></div>
 <p>The function <code>str()</code> provides an overview of the structure of an object and its elements. It is a useful function when working with large and complex objects:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">str</span>(weight_g)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">str</span>(animals)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">str</span>(weight_g)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">str</span>(animals)</span></code></pre></div>
 <p>You can use the <code>c()</code> function to add other elements to your vector:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(weight_g, <span class="dv">90</span>) <span class="co"># add to the end of the vector</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">30</span>, weight_g) <span class="co"># add to the beginning of the vector</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>weight_g</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(weight_g, <span class="dv">90</span>) <span class="co"># add to the end of the vector</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">30</span>, weight_g) <span class="co"># add to the beginning of the vector</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>weight_g</span></code></pre></div>
 <p>In the first line, we take the original vector <code>weight_g</code>, add the value <code>90</code> to the end of it, and save the result back into <code>weight_g</code>. Then we add the value <code>30</code> to the beginning, again saving the result back into <code>weight_g</code>.</p>
 <p>We can do this over and over again to grow a vector, or assemble a dataset. As we program, this may be useful to add results that we are collecting or calculating.</p>
 <p>An <strong>atomic vector</strong> is the simplest R <strong>data type</strong> and is a linear vector of a single type. Above, we saw 2 of the 6 main <strong>atomic vector</strong> types that R uses: <code>"character"</code> and <code>"numeric"</code> (or <code>"double"</code>). These are the basic building blocks that all R objects are built from. The other 4 <strong>atomic vector</strong> types are:</p>
@@ -690,10 +687,10 @@ R implicitly converts them to all be the same type
 </p>
 <ul>
 <li><p>What will happen in each of these examples? (hint: use <code>class()</code> to check the data type of your objects):</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>num_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;a&quot;</span>)</span>
-<span id="cb25-2"><a href="#cb25-2"></a>num_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">TRUE</span>)</span>
-<span id="cb25-3"><a href="#cb25-3"></a>char_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="ot">TRUE</span>)</span>
-<span id="cb25-4"><a href="#cb25-4"></a>tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;4&quot;</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>num_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>num_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">TRUE</span>)</span>
+<span id="cb23-3"><a href="#cb23-3"></a>char_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="ot">TRUE</span>)</span>
+<span id="cb23-4"><a href="#cb23-4"></a>tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;4&quot;</span>)</span></code></pre></div></li>
 <li><p>Why do you think it happens?</p></li>
 </ul>
 <div class="accordion">
@@ -708,7 +705,7 @@ Vectors can be of only one data type. R tries to convert (coerce) the content of
 </p>
 <ul>
 <li><p>How many values in <code>combined_logical</code> are <code>"TRUE"</code> (as a character) in the following example (reusing the 2 <code>..._logical</code>s from above):</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>combined_logical &lt;-<span class="st"> </span><span class="kw">c</span>(num_logical, char_logical)</span></code></pre></div></li>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>combined_logical &lt;-<span class="st"> </span><span class="kw">c</span>(num_logical, char_logical)</span></code></pre></div></li>
 </ul>
 <div class="accordion">
 <h3 class="toc-ignore">
@@ -738,41 +735,41 @@ logical → numeric → character ← logical
 <div id="subsetting-vectors" class="section level2">
 <h2>Subsetting vectors</h2>
 <p>If we want to extract one or several values from a vector, we must provide one or several indices in square brackets. For instance:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>animals[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>animals[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;rat&quot;</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>animals[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>animals[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)]</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;dog&quot; &quot;rat&quot;</code></pre>
 <p>We can also repeat the indices to create an object with more elements than the original one:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>more_animals &lt;-<span class="st"> </span>animals[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>)]</span>
-<span id="cb31-2"><a href="#cb31-2"></a>more_animals</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>more_animals &lt;-<span class="st"> </span>animals[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>)]</span>
+<span id="cb29-2"><a href="#cb29-2"></a>more_animals</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;mouse&quot; &quot;rat&quot;   &quot;dog&quot;   &quot;rat&quot;   &quot;mouse&quot; &quot;cat&quot;</code></pre>
 <p>R indices start at 1. Programming languages like Fortran, MATLAB, Julia, and R start counting at 1, because that’s what human beings typically do. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
 <div id="conditional-subsetting" class="section level3">
 <h3>Conditional subsetting</h3>
 <p>Another common way of subsetting is by using a logical vector. <code>TRUE</code> will select the element with the same index, while <code>FALSE</code> will not:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">34</span>, <span class="dv">39</span>, <span class="dv">54</span>, <span class="dv">55</span>)</span>
-<span id="cb33-2"><a href="#cb33-2"></a>weight_g[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">34</span>, <span class="dv">39</span>, <span class="dv">54</span>, <span class="dv">55</span>)</span>
+<span id="cb31-2"><a href="#cb31-2"></a>weight_g[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</span></code></pre></div>
 <pre><code>#&gt; [1] 21 39 54</code></pre>
 <p>Typically, these logical vectors are not typed by hand, but are the output of other functions or logical tests. For instance, if you wanted to select only the values above 50:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>weight_g <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>    <span class="co"># will return logicals with TRUE for the indices that meet the condition</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>weight_g <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>    <span class="co"># will return logicals with TRUE for the indices that meet the condition</span></span></code></pre></div>
 <pre><code>#&gt; [1] FALSE FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co">## so we can use this to select only the values above 50</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a>weight_g[weight_g <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co">## so we can use this to select only the values above 50</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>weight_g[weight_g <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 54 55</code></pre>
 <p>You can combine multiple tests using <code>&amp;</code> (both conditions are true, AND) or <code>|</code> (at least one of the conditions is true, OR):</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>weight_g[weight_g <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span> <span class="op">|</span><span class="st"> </span>weight_g <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>weight_g[weight_g <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span> <span class="op">|</span><span class="st"> </span>weight_g <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 21 54 55</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>weight_g[weight_g <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span> <span class="op">&amp;</span><span class="st"> </span>weight_g <span class="op">==</span><span class="st"> </span><span class="dv">21</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>weight_g[weight_g <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span> <span class="op">&amp;</span><span class="st"> </span>weight_g <span class="op">==</span><span class="st"> </span><span class="dv">21</span>]</span></code></pre></div>
 <pre><code>#&gt; numeric(0)</code></pre>
 <p>Here, <code>&lt;</code> stands for “less than”, <code>&gt;</code> for “greater than”, <code>&gt;=</code> for “greater than or equal to”, and <code>==</code> for “equal to”. The double equal sign <code>==</code> is a test for numerical equality between the left and right hand sides, and should not be confused with the single <code>=</code> sign, which performs variable assignment (similar to <code>&lt;-</code>).</p>
 <p>A common task is to search for certain strings in a vector. One could use the “or” operator <code>|</code> to test for equality to multiple values, but this can quickly become tedious. The function <code>%in%</code> allows you to test if any of the elements of a search vector are found:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)</span>
-<span id="cb43-2"><a href="#cb43-2"></a>animals[animals <span class="op">==</span><span class="st"> &quot;cat&quot;</span> <span class="op">|</span><span class="st"> </span>animals <span class="op">==</span><span class="st"> &quot;rat&quot;</span>] <span class="co"># returns both rat and cat</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)</span>
+<span id="cb41-2"><a href="#cb41-2"></a>animals[animals <span class="op">==</span><span class="st"> &quot;cat&quot;</span> <span class="op">|</span><span class="st"> </span>animals <span class="op">==</span><span class="st"> &quot;rat&quot;</span>] <span class="co"># returns both rat and cat</span></span></code></pre></div>
 <pre><code>#&gt; [1] &quot;rat&quot; &quot;cat&quot;</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>animals <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>, <span class="st">&quot;goat&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>animals <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>, <span class="st">&quot;goat&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] FALSE  TRUE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>animals[animals <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>, <span class="st">&quot;goat&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>animals[animals <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>, <span class="st">&quot;goat&quot;</span>)]</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;rat&quot; &quot;dog&quot; &quot;cat&quot;</code></pre>
 <blockquote>
 <h3 id="challenge-optional" class="challenge">Challenge (optional)</h3>
@@ -796,20 +793,20 @@ When using “&gt;” or “&lt;” on strings, R compares their alphabetical or
 <h2>Missing data</h2>
 <p>As R was designed to analyze datasets, it includes the concept of missing data (which is uncommon in other programming languages). Missing data are represented in vectors as <code>NA</code>.</p>
 <p>When doing operations on numbers, most functions will return <code>NA</code> if the data you are working with include missing values. This feature makes it harder to overlook the cases where you are dealing with missing data. You can add the argument <code>na.rm = TRUE</code> to calculate the result while ignoring the missing values.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)</span>
-<span id="cb49-2"><a href="#cb49-2"></a><span class="kw">mean</span>(heights)</span>
-<span id="cb49-3"><a href="#cb49-3"></a><span class="kw">max</span>(heights)</span>
-<span id="cb49-4"><a href="#cb49-4"></a><span class="kw">mean</span>(heights, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb49-5"><a href="#cb49-5"></a><span class="kw">max</span>(heights, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)</span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="kw">mean</span>(heights)</span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="kw">max</span>(heights)</span>
+<span id="cb47-4"><a href="#cb47-4"></a><span class="kw">mean</span>(heights, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb47-5"><a href="#cb47-5"></a><span class="kw">max</span>(heights, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>If your data include missing values, you may want to become familiar with the functions <code>is.na()</code>, esp. its negation <code>!is.na()</code>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co">## Extract those elements which are not missing values.</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a>heights[<span class="op">!</span><span class="kw">is.na</span>(heights)]</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="co">## Extract those elements which are not missing values.</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>heights[<span class="op">!</span><span class="kw">is.na</span>(heights)]</span></code></pre></div>
 <p>Recall that you can use the <code>typeof()</code> function to find the type of your atomic vector.</p>
 <blockquote>
 <h3 id="challenge-2">Challenge</h3>
 <ol style="list-style-type: decimal">
 <li><p>Using this vector of heights in inches, create a new vector, <code>heights_no_na</code>, with the NAs removed.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">63</span>, <span class="dv">69</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="ot">NA</span>, <span class="dv">68</span>, <span class="dv">61</span>, <span class="dv">70</span>, <span class="dv">61</span>, <span class="dv">59</span>, <span class="dv">64</span>, <span class="dv">69</span>, <span class="dv">63</span>, <span class="dv">63</span>, <span class="ot">NA</span>, <span class="dv">72</span>, <span class="dv">65</span>, <span class="dv">64</span>, <span class="dv">70</span>, <span class="dv">63</span>, <span class="dv">65</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">63</span>, <span class="dv">69</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="ot">NA</span>, <span class="dv">68</span>, <span class="dv">61</span>, <span class="dv">70</span>, <span class="dv">61</span>, <span class="dv">59</span>, <span class="dv">64</span>, <span class="dv">69</span>, <span class="dv">63</span>, <span class="dv">63</span>, <span class="ot">NA</span>, <span class="dv">72</span>, <span class="dv">65</span>, <span class="dv">64</span>, <span class="dv">70</span>, <span class="dv">63</span>, <span class="dv">65</span>)</span></code></pre></div></li>
 <li><p>Use the function <code>median()</code> to calculate the median of the <code>heights</code> vector.</p></li>
 <li><p>Use R to figure out how many people in the set are taller than 67 inches.</p></li>
 </ol>
@@ -818,17 +815,17 @@ When using “&gt;” or “&lt;” on strings, R compares their alphabetical or
 Answer
 </h3>
 <div style="background: #fff;">
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">63</span>, <span class="dv">69</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="ot">NA</span>, <span class="dv">68</span>, <span class="dv">61</span>, <span class="dv">70</span>, <span class="dv">61</span>, <span class="dv">59</span>, <span class="dv">64</span>, <span class="dv">69</span>, <span class="dv">63</span>, <span class="dv">63</span>, <span class="ot">NA</span>, <span class="dv">72</span>, <span class="dv">65</span>, <span class="dv">64</span>, <span class="dv">70</span>, <span class="dv">63</span>, <span class="dv">65</span>)</span>
-<span id="cb52-2"><a href="#cb52-2"></a></span>
-<span id="cb52-3"><a href="#cb52-3"></a><span class="co"># 1.</span></span>
-<span id="cb52-4"><a href="#cb52-4"></a>heights_no_na &lt;-<span class="st"> </span>heights[<span class="op">!</span><span class="kw">is.na</span>(heights)] </span>
-<span id="cb52-5"><a href="#cb52-5"></a></span>
-<span id="cb52-6"><a href="#cb52-6"></a><span class="co"># 2.</span></span>
-<span id="cb52-7"><a href="#cb52-7"></a><span class="kw">median</span>(heights, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb52-8"><a href="#cb52-8"></a></span>
-<span id="cb52-9"><a href="#cb52-9"></a><span class="co"># 3.</span></span>
-<span id="cb52-10"><a href="#cb52-10"></a>heights_above_<span class="dv">67</span> &lt;-<span class="st"> </span>heights_no_na[heights_no_na <span class="op">&gt;</span><span class="st"> </span><span class="dv">67</span>]</span>
-<span id="cb52-11"><a href="#cb52-11"></a><span class="kw">length</span>(heights_above_<span class="dv">67</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">63</span>, <span class="dv">69</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="ot">NA</span>, <span class="dv">68</span>, <span class="dv">61</span>, <span class="dv">70</span>, <span class="dv">61</span>, <span class="dv">59</span>, <span class="dv">64</span>, <span class="dv">69</span>, <span class="dv">63</span>, <span class="dv">63</span>, <span class="ot">NA</span>, <span class="dv">72</span>, <span class="dv">65</span>, <span class="dv">64</span>, <span class="dv">70</span>, <span class="dv">63</span>, <span class="dv">65</span>)</span>
+<span id="cb50-2"><a href="#cb50-2"></a></span>
+<span id="cb50-3"><a href="#cb50-3"></a><span class="co"># 1.</span></span>
+<span id="cb50-4"><a href="#cb50-4"></a>heights_no_na &lt;-<span class="st"> </span>heights[<span class="op">!</span><span class="kw">is.na</span>(heights)] </span>
+<span id="cb50-5"><a href="#cb50-5"></a></span>
+<span id="cb50-6"><a href="#cb50-6"></a><span class="co"># 2.</span></span>
+<span id="cb50-7"><a href="#cb50-7"></a><span class="kw">median</span>(heights, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb50-8"><a href="#cb50-8"></a></span>
+<span id="cb50-9"><a href="#cb50-9"></a><span class="co"># 3.</span></span>
+<span id="cb50-10"><a href="#cb50-10"></a>heights_above_<span class="dv">67</span> &lt;-<span class="st"> </span>heights_no_na[heights_no_na <span class="op">&gt;</span><span class="st"> </span><span class="dv">67</span>]</span>
+<span id="cb50-11"><a href="#cb50-11"></a><span class="kw">length</span>(heights_above_<span class="dv">67</span>)</span></code></pre></div>
 </div>
 </div>
 </blockquote>
@@ -847,14 +844,13 @@ Answer
     </p>
     <p class="text-muted">
       Questions?  Feedback?
-      Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file
-        an issue on GitHub</a>. <br/>
-      On Twitter: <a href="https://twitter.com/datacarpentry">@datacarpentry</a>
+      Please <a href="https://github.com/tibhannover/R-ecology-lesson/issues/">start or join 
+        a discussion/issue on GitHub</a>. <br/>
     </p>
   </div>
   <div class="col-md-5 text-right">
     <p class="text-muted">
-      If this lesson is useful to you, consider <a href="https://carpentries.org/newsletter/"><bold>subscribing to our newsletter</bold></a> or
+      If this lesson is useful to you, consider <a href="https://carpentries.org/newsletter/"><bold>subscribing to the Carpentries newsletter</bold></a> or
       <a href="https://carpentries.wedid.it"  onclick="_paq.push(['trackEvent', 'donate', 'click', 'bottom-button']);">making a donation</a> to support the work of
       <span class="text-nowrap"><a href="https://carpentries.org">The
       Carpentries</a></span>.

@@ -449,7 +449,7 @@ div.tocify {
 	  <span id ="search-icon"><i class="fa fa-search fa-lg"></i></span>
 	</li>
         <li>
-	  <a href="https://github.com/datacarpentry/R-ecology-lesson">
+	  <a href="https://github.com/tibhannover/R-ecology-lesson">
 	    <span class="fa fa-github fa-lg"></span>
 	  </a>
 	</li>
@@ -492,7 +492,7 @@ div.tocify {
 <p>Ideally, such analysis reports are <em>reproducible</em> documents: If an error is discovered, or if some additional subjects are added to the data, you can just re-compile the report and get the new or corrected results (versus having to reconstruct figures, paste them into a Word document, and further hand-edit various detailed results).</p>
 <p>The key R package is <a href="https://yihui.name/knitr/"><code>knitr</code></a>. It allows you to create a document that is a mixture of text and chunks of code. When the document is processed by <code>knitr</code>, chunks of code will be executed, and graphs or other results inserted into the final document.</p>
 <p>This sort of idea has been called “literate programming”.</p>
-<p><code>knitr</code> allows you to mix basically any sort of text with code from different programming languages, but we recommend that you use <code>R Markdown</code>, which mixes Markdown with R. <a href="https://www.markdownguide.org/">Markdown</a> is a light-weight mark-up language for creating web pages.</p>
+<p><code>knitr</code> allows you to mix basically any sort of text with code from different programming languages, but we recommend that you use <code>R Markdown</code>, which mixes Markdown with R. <a href="https://www.markdownguide.org/">Markdown</a> is a light-weight mark-up language and a system for writing web pages and other documents by marking up the text with just a few symbols, rather than code. The marked-up text gets <em>compiled</em> to HTML, LaTeX, etc., replacing the marks with the proper code.</p>
 </div>
 <div id="creating-an-r-markdown-file" class="section level2">
 <h2>Creating an R Markdown file</h2>
@@ -517,44 +517,7 @@ summary(cars)
 &#96;&#96;&#96;
 </pre>
 <p>These are chunks of R code that will be executed by <code>knitr</code> and replaced by their results. More on this later.</p>
-<p>Also note the web address that’s put between angle brackets (<code>&lt; &gt;</code>) as well as the double-asterisks in <code>**Knit**</code>. This is <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a>.</p>
-</div>
-<div id="markdown" class="section level2">
-<h2>Markdown</h2>
-<p>Markdown is a system for writing web pages by marking up the text much as you would in an email rather than writing html code. The marked-up text gets <em>converted</em> to html, replacing the marks with the proper html code.</p>
-<p>For now, let’s delete all of the stuff that’s there and write a bit of markdown.</p>
-<p>You make things <strong>bold</strong> using two asterisks, like this: <code>**bold**</code>, and you make things <em>italics</em> by using underscores, like this: <code>_italics_</code>.</p>
-<p>You can make a bulleted list by writing a list with hyphens or asterisks, like this:</p>
-<pre><code>* bold with double-asterisks
-* italics with underscores
-* code-type font with backticks</code></pre>
-<p>or like this:</p>
-<pre><code>- bold with double-asterisks
-- italics with underscores
-- code-type font with backticks</code></pre>
-<p>Each will appear as:</p>
-<ul>
-<li>bold with double-asterisks</li>
-<li>italics with underscores</li>
-<li>code-type font with backticks</li>
-</ul>
-<p>You can use whatever method you prefer, but <em>be consistent</em>. This maintains the readability of your code.</p>
-<p>You can make a numbered list by just using numbers. You can even use the same number over and over if you want:</p>
-<pre><code>1. bold with double-asterisks
-1. italics with underscores
-1. code-type font with backticks</code></pre>
-<p>This will appear as:</p>
-<ol style="list-style-type: decimal">
-<li>bold with double-asterisks</li>
-<li>italics with underscores</li>
-<li>code-type font with backticks</li>
-</ol>
-<p>You can make section headers of different sizes by initiating a line with some number of <code>#</code> symbols:</p>
-<pre><code># Title
-## Main section
-### Sub-section
-#### Sub-sub section</code></pre>
-<p>You <em>compile</em> the R Markdown document to an html webpage by clicking the “Knit” button in the upper-left.</p>
+<p>For now, let’s try <a href="https://www.markdowntutorial.com/">this interactive tutorial</a>. Afterwards, use the syntax you learned there to recreate the <code>cars</code> help page. Compile it by clicking the <code>Knit</code> button in the upper-left.</p>
 </div>
 <div id="a-bit-more-markdown" class="section level2">
 <h2>A bit more Markdown</h2>
@@ -582,15 +545,15 @@ surveys <- read_csv("data_raw/portal_data_joined.csv")
 <div id="how-things-get-compiled" class="section level2">
 <h2>How things get compiled</h2>
 <p>When you press the “Knit” button, the R Markdown document is processed by <code>[knitr](https://yihui.name/knitr)</code> and a plain Markdown document is produced (as well as, potentially, a set of figure files): the R code is executed and replaced by both the input and the output; if figures are produced, links to those figures are included.</p>
-<p>The Markdown and figure documents are then processed by the tool <a href="https://pandoc.org/"><code>pandoc</code></a>, which converts the Markdown file into an html file, with the figures embedded.</p>
-<p>In the previous lesson, we used <code>spread()</code> to transform <code>surveys</code> to find the mean weight of each genus in each plot over the entire survey period. The resulting table can be output into our document with <code>knitr</code>’s <code>kable()</code> function:</p>
+<p>The Markdown and figure documents are then processed by the tool <a href="https://pandoc.org/"><code>pandoc</code></a>, which compiles the Markdown file into an another document format, with the figures, tables, etc. embedded.</p>
+<p>In the previous lessons, we used <code>spread()</code> to transform <code>surveys</code> to find the mean weight of each genus in each plot over the entire survey period. The resulting table can be output into our document with <code>knitr</code>’s <code>kable()</code> function:</p>
 <pre>
 &#96;&#96;&#96;{r, output-table}
 library(tidyverse)
 library(knitr)
 read_csv("data_raw/portal_data_joined.csv") %>%
   filter(!is.na(weight)) %>%
-  group_by(plot_id, genus) %>%
+  group_by(plot_type, genus) %>%
   summarize(mean_weight = round(mean(weight), 1)) %>%
   spread(key = genus, value = mean_weight) %>% 
   kable()
@@ -652,7 +615,7 @@ knitr::opts_chunk$set(fig.path="Figs/", message=FALSE, warning=FALSE,
 </div>
 <div id="other-output-options" class="section level2">
 <h2>Other output options</h2>
-<p>You can also convert R Markdown to a PDF or a Word document. Click the little triangle next to the “Knit” button to get a drop-down menu. Or you could put <code>pdf_document</code> or <code>word_document</code> in the initial header of the file.</p>
+<p>You can also compile R Markdown to a PDF or a Word document. Click the little triangle next to the “Knit” button to get a drop-down menu. Or you could put <code>pdf_document</code> or <code>word_document</code> in the initial header of the file.</p>
 <blockquote>
 <h2 id="tip-creating-pdf-documents">Tip: Creating PDF documents</h2>
 <p>Creating .pdf documents may require installation of some extra software. If required this is detailed in an error message.</p>
@@ -689,14 +652,13 @@ knitr::opts_chunk$set(fig.path="Figs/", message=FALSE, warning=FALSE,
     </p>
     <p class="text-muted">
       Questions?  Feedback?
-      Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file
-        an issue on GitHub</a>. <br/>
-      On Twitter: <a href="https://twitter.com/datacarpentry">@datacarpentry</a>
+      Please <a href="https://github.com/tibhannover/R-ecology-lesson/issues/">start or join 
+        a discussion/issue on GitHub</a>. <br/>
     </p>
   </div>
   <div class="col-md-5 text-right">
     <p class="text-muted">
-      If this lesson is useful to you, consider <a href="https://carpentries.org/newsletter/"><bold>subscribing to our newsletter</bold></a> or
+      If this lesson is useful to you, consider <a href="https://carpentries.org/newsletter/"><bold>subscribing to the Carpentries newsletter</bold></a> or
       <a href="https://carpentries.wedid.it"  onclick="_paq.push(['trackEvent', 'donate', 'click', 'bottom-button']);">making a donation</a> to support the work of
       <span class="text-nowrap"><a href="https://carpentries.org">The
       Carpentries</a></span>.
