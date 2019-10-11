@@ -173,7 +173,7 @@ The Markdown and figure documents are then processed by the tool
 [`pandoc`](https://pandoc.org/), which compiles the Markdown file into an
 another document format, with the figures, tables, etc. embedded.
 
-In the previous lessons, we used `spread()` to transform `surveys` to find the
+In the previous lessons, we used `pivot_wider()` to transform `surveys` to find the
 mean weight of each genus in each plot over the entire survey period. The resulting
 table can be output into our document with `knitr`'s `kable()` function:
 
@@ -185,7 +185,7 @@ read_csv("data_raw/portal_data_joined.csv") %>%
   filter(!is.na(weight)) %>%
   group_by(plot_type, genus) %>%
   summarize(mean_weight = round(mean(weight), 1)) %>%
-  spread(key = genus, value = mean_weight) %>% 
+  pivot_wider(names_from = genus, values_from = mean_weight) %>% 
   kable()
 &#96;&#96;&#96;
 </pre>
@@ -197,7 +197,7 @@ read_csv("data/surveys_complete.csv") %>%
   filter(!is.na(weight)) %>%
   group_by(plot_type, genus) %>%
   summarize(mean_weight = round(mean(weight), 1)) %>%
-  spread(key = genus, value = mean_weight) %>% 
+  pivot_wider(names_from = genus, values_from = mean_weight) %>% 
   kable()
 ```
 
